@@ -1,10 +1,13 @@
 import React from 'react';
-import Slider from "react-slick";
 
 // Import styles
-import './css/app.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import './css/app.css';
+
+// Import components
+import Header from './components/Header';
+import ArticleWrapper from './components/ArticleWrapper';
 
 // Import the data class
 import Data from './data';
@@ -31,46 +34,21 @@ class App extends React.Component {
   }
 
   render() {
-
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
-    };
     
     return (
-      <div className="App">
+      <div className="app">
         {this.state.loading &&
-          <h1>loading</h1>
+          <div className="app-container">
+            <h1>loading</h1>
+          </div>
         }
         {!this.state.loading &&
-        <header className="App-header">
+        <div className="app-container">
+          <Header />
           {this.state.articles.map((article)=> (
-            <li key={article.id}>{ article.title }</li>
+            <ArticleWrapper key={article.id} article={article} />
           ))}
-          <Slider {...settings}>
-            <div>
-              <h3>1</h3>
-            </div>
-            <div>
-              <h3>2</h3>
-            </div>
-            <div>
-              <h3>3</h3>
-            </div>
-            <div>
-              <h3>4</h3>
-            </div>
-            <div>
-              <h3>5</h3>
-            </div>
-            <div>
-              <h3>6</h3>
-            </div>
-          </Slider>
-        </header>
+        </div>
         }
       </div>
     );
