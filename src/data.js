@@ -85,11 +85,11 @@ class Data {
         return filterSources(allSidesData, newsAPIData);
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.error('Error fetching NewsAPI sources:', error);
       });
     })
     .catch((error) => {
-      console.error('Error:', error);
+      console.error('Error fetching AllSides Media sources:', error);
     });
   }
   
@@ -146,7 +146,6 @@ class Data {
       return finalArray;
     }
 
-
     return this.getSources().then((sources)=> {
       let sourceString = sources.ids.join(',');
       return fetch(`https://newsapi.org/v2/top-headlines?sources=${sourceString}&apiKey=${secrets.newsApi.key}&pageSize=100`)
@@ -155,7 +154,7 @@ class Data {
         return groupArticles(data.articles);
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.error('Error fetching NewsAPI articles:', error);
       });
     });
   }
@@ -170,7 +169,7 @@ class Data {
     // Fetch or create feed data in GraphQL DB
     return API.graphql({ query: listFeeds }).then((apiData)=> {
 
-      // Add data if it doesn't exist - this is a fallback in case something happens to the existing data in the DB
+      // Creat data in DB if it doesn't exist - this is a fallback in case something happens to the existing data in the DB
       if (apiData.data.listFeeds.items.length < 1) {
         return this.getSources().then((sources)=> {
           return this.getNews().then((articles)=> {
@@ -188,9 +187,9 @@ class Data {
         const id = apiData.data.listFeeds.items[0].id;
         const createdTime = apiData.data.listFeeds.items[0].timestamp;
 
-        // If the data is stale (older than 15m minutes) then update it
+        // If the data is stale (older than 15 minutes) then update it
         if ((new Date() - createdTime) > (60 * 1000 * 15)) {
-          console.log('updated');
+          console.log('Fetching new data');
           return this.getSources().then((sources)=> {
             return this.getNews().then((articles)=> {
               dataObj = {
@@ -203,6 +202,12 @@ class Data {
                 return dataObj;
               });
             })
+            .catch(()=> {
+              return apiData.data.listFeeds.items[0];
+            });
+          })
+          .catch(()=> {
+            return apiData.data.listFeeds.items[0];
           });
         }
 
