@@ -12,22 +12,20 @@ class App extends React.Component {
 
   componentDidMount() {
 
-    // initialize data object
+    // Initialize data object, get the feed data, and set the state
     const data = new Data();
-    data.getNews().then((articles) => {
-      data.getSources().then((sources) => {
+    data.getData().then((feed)=> {
+      setTimeout(()=> {
         this.setState({
           loading: false,
-          sources: sources,
-          articles: articles,
+          sources: JSON.parse(feed.sources),
+          articles: JSON.parse(feed.articles),
         });
-      })
-    });
+      }, 1500)
+    })
   }
 
   render() {
-
-    console.log(this.state.articles);
     
     return (
       <div className="App">

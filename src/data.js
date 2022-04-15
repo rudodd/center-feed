@@ -1,5 +1,12 @@
 import secrets from "./secrets";
 import { commonWordArray, specialCharacters } from './data_sets/dataSets';
+import Amplify, { API } from 'aws-amplify';
+import awsconfig from './aws-exports';
+import { listFeeds } from './graphql/queries';
+import { createFeed, updateFeed } from './graphql/mutations';
+
+// Configure the Amplify object
+Amplify.configure(awsconfig);
 
 class Data {
 
@@ -150,6 +157,60 @@ class Data {
       .catch((error) => {
         console.error('Error:', error);
       });
+    });
+  }
+
+  /**
+   * Get Data Method
+   * @returns an object with both sources and articles from wither cache or current API endpoints
+   */
+  async getData() {
+    let dataObj;
+
+    // Fetch or create feed data in GraphQL DB
+    return API.graphql({ query: listFeeds }).then((apiData)=> {
+
+      // Add data if it doesn't exist - this is a fallback in case something happens to the existing data in the DB
+      if (apiData.data.listFeeds.items.length < 1) {
+        return this.getSources().then((sources)=> {
+          return this.getNews().then((articles)=> {
+            dataObj = {
+              timestamp: Date.now(),
+              articles: JSON.stringify(articles),
+              sources: JSON.stringify(sources),
+            }
+            return API.graphql({ query: createFeed, variables: { input: dataObj } }).then(()=> {
+              return dataObj;
+            });
+          })
+        });
+      } else {
+        const id = apiData.data.listFeeds.items[0].id;
+        const createdTime = apiData.data.listFeeds.items[0].timestamp;
+
+        // If the data is stale (older than 15m minutes) then update it
+        if ((new Date - createdTime) > (60 * 1000 * 15)) {
+          console.log('updated');
+          return this.getSources().then((sources)=> {
+            return this.getNews().then((articles)=> {
+              dataObj = {
+                id: id,
+                timestamp: Date.now(),
+                articles: JSON.stringify(articles),
+                sources: JSON.stringify(sources),
+              }
+              return API.graphql({ query: updateFeed, variables: { input: dataObj } }).then(()=> {
+                return dataObj;
+              });
+            })
+          });
+        }
+
+        // Return the existing data from the DB
+        else {
+          return apiData.data.listFeeds.items[0];
+        }
+      }
     });
   }
 }
