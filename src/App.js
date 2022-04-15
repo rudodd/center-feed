@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './dist/css/app.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// Import the data class
+import Data from './data';
+
+class App extends React.Component {
+
+  state = {
+    loading: true,
+  }
+
+  componentDidMount() {
+
+    // Initialize data object, get the feed data, and set the state
+    const data = new Data();
+    data.getData().then((feed)=> {
+      setTimeout(()=> {
+        this.setState({
+          loading: false,
+          sources: JSON.parse(feed.sources),
+          articles: JSON.parse(feed.articles),
+        });
+      }, 1500)
+    })
+  }
+
+  render() {
+    
+    return (
+      <div className="App">
+        {this.state.loading &&
+          <h1>loading</h1>
+        }
+        {!this.state.loading &&
+        <header className="App-header">
+          {this.state.articles.map((article)=> (
+            <li key={article.id}>{ article.title }</li>
+          ))}
+        </header>
+        }
+      </div>
+    );
+  } 
 }
 
 export default App;
