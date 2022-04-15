@@ -1,5 +1,5 @@
 import React from 'react';
-import './dist/css/app.css';
+import './css/app.css';
 
 // Import the data class
 import Data from './data';
