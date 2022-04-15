@@ -82,6 +82,7 @@ class Data {
       return fetch(`https://newsapi.org/v2/sources?apiKey=${secrets.newsApi.key}`)
       .then(response => response.json())
       .then(newsAPIData => {
+        console.log(newsAPIData);
         return filterSources(allSidesData, newsAPIData);
       })
       .catch((error) => {
