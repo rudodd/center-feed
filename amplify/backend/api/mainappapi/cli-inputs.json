@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/feed": {
+      "name": "/feed",
+      "lambdaFunction": "centerFeedData",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
