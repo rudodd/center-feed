@@ -1,12 +1,12 @@
 import secrets from "./secrets";
 import { commonWordArray, specialCharacters } from './data_sets/dataSets';
-import Amplify, { API } from 'aws-amplify';
+import { API } from 'aws-amplify';
 import awsconfig from './aws-exports';
 import { listFeeds } from './graphql/queries';
 import { createFeed, updateFeed } from './graphql/mutations';
 
 // Configure the Amplify object
-Amplify.configure(awsconfig);
+API.configure(awsconfig);
 
 class Data {
 
@@ -16,7 +16,7 @@ class Data {
    */
 
   getSources() {
-    const bannedSources = ['mtv-news', 'fox-news', 'the-washington-post', 'google-news', 'national-geographic'];
+    const bannedSources = ['mtv-news','fox-news','the-washington-post','google-news','national-geographic'];
     const cleanURL = (url) => {
       return url.replaceAll('/', '').replace('/', '').replace('https', 'http');
     }
@@ -67,23 +67,13 @@ class Data {
     }
 
     // Get Allsides Media Sources
-    // For use until API issue with AllSides is resolved - JSON file is in 'public' directory
-    //// return fetch(`https://www.allsides.com/media-bias/json/noncommercial/publications`)
-    return fetch('TEMPSources.json', {
-      headers : { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-       }
-    })
-    .then(response => response.json())
+    return API.get('mainappapi', '/feed/allSidesSources')
     .then(allSidesData => {
 
       // Get News API Sources
-      return fetch(`https://newsapi.org/v2/sources?apiKey=${secrets.newsApi.key}`)
-      .then(response => response.json())
+      return API.post('mainappapi', '/feed/newsAPISources', { body: { key: secrets.newsApi.key }})
       .then(newsAPIData => {
-        console.log(newsAPIData);
-        return filterSources(allSidesData, newsAPIData);
+        return filterSources(JSON.parse(allSidesData.data), JSON.parse(newsAPIData.data));
       })
       .catch((error) => {
         console.error('Error fetching NewsAPI sources:', error);
@@ -99,7 +89,7 @@ class Data {
    * @returns an array of news artical objects for use in the UI.
    */
 
-  getNews() {
+  async getNews() {
 
     // Helper function to change shape of data to account for related articles.
     const groupArticles = (articles) => {
@@ -149,8 +139,13 @@ class Data {
 
     return this.getSources().then((sources)=> {
       let sourceString = sources.ids.join(',');
-      return fetch(`https://newsapi.org/v2/top-headlines?sources=${sourceString}&apiKey=${secrets.newsApi.key}&pageSize=100`)
-      .then(response => response.json())
+      return API.post('mainappapi', '/feed/newsAPIArticles', {
+        body: {
+          sources: sourceString,
+          key: secrets.newsApi.key,
+        }
+      })
+      .then(response => JSON.parse(response.data))
       .then(data => {
         return groupArticles(data.articles);
       })
@@ -170,7 +165,7 @@ class Data {
     // Fetch or create feed data in GraphQL DB
     return API.graphql({ query: listFeeds }).then((apiData)=> {
 
-      // Creat data in DB if it doesn't exist - this is a fallback in case something happens to the existing data in the DB
+      // Create data in DB if it doesn't exist - this is a fallback in case something happens to the existing data in the DB
       if (apiData.data.listFeeds.items.length < 1) {
         return this.getSources().then((sources)=> {
           return this.getNews().then((articles)=> {
@@ -189,7 +184,7 @@ class Data {
         const createdTime = apiData.data.listFeeds.items[0].timestamp;
 
         // If the data is stale (older than 15 minutes) then update it
-        if ((new Date() - createdTime) > (60 * 1000 * 15)) {
+        if ((new Date() - createdTime) > (60 * 1000 * 0)) {
           console.log('Fetching new data');
           return this.getSources().then((sources)=> {
             return this.getNews().then((articles)=> {
