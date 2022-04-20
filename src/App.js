@@ -23,30 +23,30 @@ class App extends React.Component {
     // Initialize data object, get the feed data, and set the state
     const data = new Data();
     data.getData().then((feed)=> {
-      console.log(feed);
       this.setState({
         loading: false,
         sources: JSON.parse(feed.sources),
         articles: JSON.parse(feed.articles),
       });
     })
-    console.log(this.state);
   }
 
   render() {
+
+    console.log(this.state);
     
     return (
       <div className="app">
         {this.state.loading &&
           <div className="app-container">
-            <h1>loading</h1>
+            <img src="/img/loading.gif" alt="loading" />
           </div>
         }
+        {!this.state.loading && <Header />}
         {!this.state.loading &&
         <div className="app-container">
-          <Header />
           {this.state.articles.map((article)=> (
-            <ArticleWrapper key={article.id} article={article} />
+            <ArticleWrapper key={article.id} article={article} sources={this.state.sources} />
           ))}
         </div>
         }

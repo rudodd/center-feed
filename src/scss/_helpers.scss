@@ -1,0 +1,15 @@
+/**
+ * Universal helper classes ************************************
+ **/
+
+// Hide broken image icon and alt for missing images
+img[alt]:after {  
+  content: '';
+  display: block;
+  position: absolute;
+  top: -2%;
+  left: -2%;
+  width: 105%;
+  height: 105%;
+  background: $grey-lightest;
+}
