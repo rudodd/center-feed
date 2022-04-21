@@ -14,6 +14,23 @@ import Data from './data';
 
 class App extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.refresh = this.refresh.bind(this)
+  }
+
+  refresh() {
+    this.setState({loading: true});
+    const data = new Data();
+    data.getData().then((feed)=> {
+      this.setState({
+        loading: false,
+        sources: JSON.parse(feed.sources),
+        articles: JSON.parse(feed.articles),
+      });
+    });
+  }
+
   state = {
     loading: true,
   }
@@ -28,16 +45,14 @@ class App extends React.Component {
         sources: JSON.parse(feed.sources),
         articles: JSON.parse(feed.articles),
       });
-    })
+    });
   }
 
   render() {
-
-    console.log(this.state);
     
     return (
       <div className="app">
-        <Header loading={this.state.loading} />
+        <Header loading={this.state.loading} refresh={this.refresh}/>
         {this.state.loading &&
           <div className="loading-container">
             <img src="/img/loading.gif" alt="loading" />
