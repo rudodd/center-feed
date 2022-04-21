@@ -333,6 +333,7 @@ a:visited {
 
 .large-article .article-details {
   position: absolute;
+  width: calc(100% - 30px);
   bottom: 0;
   left: 0;
   background: #fff;
