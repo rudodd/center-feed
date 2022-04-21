@@ -3,7 +3,6 @@ import React from "react";
 // Import components
 import SmallArticle from "./SmallArticle";
 import ArticleSlider from "./ArticleSlider";
-import LargeArticle from "./LargeArticle";
 
 class ArticleWrapper extends React.Component {
 
@@ -18,7 +17,7 @@ class ArticleWrapper extends React.Component {
           <SmallArticle article={article} source={source} />
         }
         {article.relatedArticles.length !== 0 &&
-          <ArticleSlider article={article} source={source} />
+          <ArticleSlider article={article} sources={sources} />
         }
       </div>
     )

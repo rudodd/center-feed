@@ -12,4 +12,6 @@ img[alt]:after {
   width: 105%;
   height: 105%;
   background: $grey-lightest;
+  background: url('/public/img/no-img.svg') $grey-lightest center center no-repeat;
+  background-size: 33% 33%;
 }

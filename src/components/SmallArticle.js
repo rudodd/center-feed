@@ -1,13 +1,11 @@
-import { isStorageSource } from "@aws-amplify/predictions";
 import React from "react";
-import ArticleWrapper from "./ArticleWrapper";
+import SourceDetails from "./SourceDetails";
 
 class SmallArticle extends React.Component {
 
   render() {
 
     const { article, source } = this.props;
-    const sourceLogo = `/img/sources/${source.id}.png`;
     let publishedTime = '0 minutes';
     let currentTime = new Date();
     let articleTime = new Date(article.publishedAt);
@@ -23,22 +21,10 @@ class SmallArticle extends React.Component {
     } else {
       publishedTime = `${Math.round((difference / 60) / 24)} days`;
     }
-    let leanClass = 'center';
-    let leanText = 'Center';
-    switch(source.lean) {
-      case 'Lean Left':
-        leanClass = 'left';
-        leanText = 'Center Left'
-        break;
-      case 'Lean Right':
-        leanClass = 'right';
-        leanText = 'Center Right';
-        break;
-    }
 
     return (
       <div className="small-article">
-        <a href={article.url}>
+        <a href={article.url} target="_blank" rel="noreferrer">
           <div className="article-details">
             <div className="article-img">
               <img src={ article.urlToImage } alt={ article.title } />
@@ -52,15 +38,8 @@ class SmallArticle extends React.Component {
               </div>
             </div>
           </div>
-          <div className="source-details">
-            <div className="source-logo">
-              <img src={ sourceLogo } alt={ source.name } />
-            </div>
-            <div className="lean-info">
-              <a href={ source.allSidesURL }>Source leans: <span className={ leanClass }>{ leanText }</span></a>
-            </div>
-          </div>
         </a>
+        <SourceDetails source={source} />
       </div>
     )
   }
