@@ -27,6 +27,7 @@ body {
 }
 
 .app-container {
+  margin: 80px 0 0;
   @include large-only {
     height: 100%;
     width: 100%;
@@ -38,6 +39,8 @@ body {
 
 @import './scss/colors';
 @import './scss/typograhpy';
+@import './scss/header';
+@import './scss/loading';
 @import './scss/small_article';
 @import './scss/slider';
 @import './scss/large_article';

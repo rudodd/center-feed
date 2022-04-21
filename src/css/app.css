@@ -20,6 +20,10 @@ body {
   }
 }
 
+.app-container {
+  margin: 80px 0 0;
+}
+
 @media (min-width: 455px) {
   .app-container {
     height: 100%;
@@ -77,6 +81,96 @@ a:visited {
 
 .lean-info a span.center {
   color: #6a4c93;
+}
+
+/**
+ * Header component styles *****************************************
+ **/
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100% - 30px);
+  padding: 15px;
+  background: #fff;
+  border-bottom: solid 1px #f8f9fa;
+  -webkit-box-shadow: 0px 15px 25px -5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 15px 25px -5px rgba(0, 0, 0, 0.1);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  z-index: 99999;
+  opacity: 0;
+  -webkit-transition: ease all 1s;
+  transition: ease all 1s;
+}
+
+.app-header.show {
+  opacity: 1;
+}
+
+.app-header .logo {
+  text-align: center;
+}
+
+.app-header .logo a, .app-header .logo a:visited {
+  color: #212529;
+  display: inline-block;
+}
+
+.app-header .logo a h1, .app-header .logo a:visited h1 {
+  font-family: 'Oswald', sans-serif;
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 1.1;
+  font-size: 1.5rem;
+}
+
+@media (min-width: 455px) {
+  .app-header .logo a h1, .app-header .logo a:visited h1 {
+    font-size: 2rem;
+    margin-top: 8px;
+  }
+}
+
+.app-header .logo a h1 span, .app-header .logo a:visited h1 span {
+  color: #7536a6;
+}
+
+.app-header .logo a h1 sup, .app-header .logo a:visited h1 sup {
+  display: inline-block;
+  font-size: 0.9rem;
+}
+
+@media (min-width: 455px) {
+  .app-header .logo a h1 sup, .app-header .logo a:visited h1 sup {
+    font-size: 1.15rem;
+  }
+}
+
+.app-header .refresh {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+}
+
+.app-header .refresh svg {
+  fill: #6a4c93;
+}
+
+/**
+ * Loading icon styles ***********************************
+ **/
+.loading-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.loading-container img {
+  height: 75px;
+  width: 75px;
 }
 
 /**
