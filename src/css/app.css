@@ -153,7 +153,13 @@ a:visited {
   right: 20px;
 }
 
-.app-header .refresh svg {
+.app-header .refresh button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.app-header .refresh button svg {
   fill: #6a4c93;
 }
 

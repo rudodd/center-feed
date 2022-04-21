@@ -1,12 +1,13 @@
 import secrets from "./secrets";
 import { commonWordArray, specialCharacters } from './data_sets/dataSets';
-import { API } from 'aws-amplify';
+import { API, Auth } from 'aws-amplify';
 import awsconfig from './aws-exports';
 import { listFeeds } from './graphql/queries';
 import { createFeed, updateFeed } from './graphql/mutations';
 
 // Configure the Amplify object
 API.configure(awsconfig);
+Auth.configure(awsconfig);
 
 class Data {
 
@@ -191,7 +192,6 @@ class Data {
 
         // If the data is stale (older than 15 minutes) then update it
         if ((new Date() - createdTime) > (60 * 1000 * 0)) {
-          console.log('Fetching new data');
           return this.getSources().then((sources)=> {
             return this.getNews().then((articles)=> {
               dataObj = {

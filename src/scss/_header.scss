@@ -59,8 +59,14 @@
     top: 18px;
     right: 20px;
 
-    svg {
-      fill: $purple;
+    button {
+      border: 0;
+      background: transparent;
+      padding: 0;
+
+      svg {
+        fill: $purple;
+      }
     }
   }
 }
