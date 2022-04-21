@@ -1,12 +1,13 @@
 import secrets from "./secrets";
 import { commonWordArray, specialCharacters } from './data_sets/dataSets';
-import { API } from 'aws-amplify';
+import { API, Auth } from 'aws-amplify';
 import awsconfig from './aws-exports';
 import { listFeeds } from './graphql/queries';
 import { createFeed, updateFeed } from './graphql/mutations';
 
 // Configure the Amplify object
 API.configure(awsconfig);
+Auth.configure(awsconfig);
 
 class Data {
 
@@ -147,7 +148,13 @@ class Data {
       })
       .then(response => JSON.parse(response.data))
       .then(data => {
-        return groupArticles(data.articles);
+        let currentArticles = data.articles.filter((article)=> {
+          let currentTime = new Date();
+          let articleTime = new Date(article.publishedAt);
+          let difference = Math.round((currentTime - articleTime) / 1000 / 60);
+          return difference < 4320 ? true : false;
+        });
+        return groupArticles(currentArticles);
       })
       .catch((error) => {
         console.error('Error fetching NewsAPI articles:', error);
@@ -184,8 +191,7 @@ class Data {
         const createdTime = apiData.data.listFeeds.items[0].timestamp;
 
         // If the data is stale (older than 15 minutes) then update it
-        if ((new Date() - createdTime) > (60 * 1000 * 15)) {
-          console.log('Fetching new data');
+        if ((new Date() - createdTime) > (60 * 1000 * 0)) {
           return this.getSources().then((sources)=> {
             return this.getNews().then((articles)=> {
               dataObj = {

@@ -1,0 +1,86 @@
+/**
+ * Small Article Coponent Styles ****************************************
+ **/
+
+.small-article {
+  padding: 10px;
+  margin: 15px;
+  border: solid 1px $grey-lighter;
+  border-radius: 15px;
+
+  > a {
+    display: block;
+  
+    .article-details {
+      display: flex;
+      column-gap: 15px;
+  
+      .article-img {
+        position: relative;
+        height: 85px;
+        width: 100px;
+        min-height: 75px;
+        min-width: 100px;
+        overflow: hidden;
+        border-radius: 10px;
+        background: $grey-lightest;
+    
+        img {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          object-fit: cover;
+        }
+      }
+    
+      .article-info {
+        flex-grow: 1;
+  
+        .time {
+  
+          p {
+            margin: 0 0 5px;
+            font-size: 0.75rem;
+            color: $grey-dark;
+          }
+        }
+    
+        .title {
+    
+          h2 {
+            font-size: 1rem;
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .source-details {
+    display: flex;
+    align-items: center;
+    padding: 10px 5px 0;
+    margin-top: 15px;
+    border-top: solid 2px $grey-lightest;
+
+    .source-logo {
+
+      img {
+        max-height: 20px;
+        max-width: 75px;
+      }
+    }
+
+    .lean-info {
+      margin-left: auto;
+
+      a {
+        margin: 0;
+        line-height: 1;
+      }
+    }
+  }
+}

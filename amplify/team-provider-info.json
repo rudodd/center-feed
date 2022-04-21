@@ -17,6 +17,9 @@
           "deploymentBucketName": "amplify-amplifycb8ad973109f4-staging-204633-deployment",
           "s3Key": "amplify-builds/centerFeedData-6d337575612b6a76684a-build.zip"
         }
+      },
+      "auth": {
+        "centerfeedbca52aa9": {}
       }
     }
   }
