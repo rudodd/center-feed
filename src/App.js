@@ -37,12 +37,12 @@ class App extends React.Component {
     
     return (
       <div className="app">
+        <Header loading={this.state.loading} />
         {this.state.loading &&
-          <div className="app-container">
+          <div className="loading-container">
             <img src="/img/loading.gif" alt="loading" />
           </div>
         }
-        {!this.state.loading && <Header />}
         {!this.state.loading &&
         <div className="app-container">
           {this.state.articles.map((article)=> (

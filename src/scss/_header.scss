@@ -1,0 +1,66 @@
+/**
+ * Header component styles *****************************************
+ **/
+
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100% - 30px);
+  padding: 15px;
+  background: $white;
+  border-bottom: solid 1px $grey-lightest;
+  box-shadow: 0px 15px 25px -5px rgba(0,0,0,0.1);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  z-index: 99999;
+  opacity: 0;
+  transition: ease all 1s;
+
+  &.show {
+    opacity: 1;
+  }
+
+  .logo {
+    text-align: center;
+
+    a, a:visited {
+      color: $black;
+      display: inline-block;
+
+      h1 {
+        font-family: 'Oswald', sans-serif;
+        margin: 0;
+        text-transform: uppercase;
+        line-height: 1.1;
+        font-size: 1.5rem;
+        @include large-only {
+          font-size: 2rem;
+          margin-top: 8px;
+        }
+
+        span {
+          color: #7536a6;
+        }
+
+        sup {
+          display: inline-block;
+          font-size: 0.9rem;
+          @include large-only {
+            font-size: 1.15rem;
+          }
+        }
+      }
+    }
+  }
+
+  .refresh {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+
+    svg {
+      fill: $purple;
+    }
+  }
+}
