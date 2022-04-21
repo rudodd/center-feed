@@ -1,0 +1,25 @@
+/**
+ * Slick Slider Coponent Styles ****************************************
+ **/
+
+.slick-slider {
+  margin: 15px 0;
+
+  .slick-list {
+    
+    .slick-track {
+      
+      .slick-slide {
+        
+        > div {
+          padding-bottom: 40px;
+        }
+      }
+    }
+  }
+
+  .slick-dots {
+    transform: translateY(-30px);
+    background: transparent;
+  }
+}
