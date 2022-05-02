@@ -9,7 +9,7 @@ class Header extends React.Component {
   componentDidMount () {
     this.timeoutId = setTimeout(function () {
         this.setState({show: true});
-    }.bind(this), 1000);
+    }.bind(this), 250);
   } 
 
   componentWillUnmount () {
