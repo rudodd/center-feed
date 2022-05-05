@@ -190,8 +190,8 @@ class Data {
         const id = apiData.data.listFeeds.items[0].id;
         const createdTime = apiData.data.listFeeds.items[0].timestamp;
 
-        // If the data is stale (older than 15 minutes) then update it
-        if ((new Date() - createdTime) > (60 * 1000 * 0)) {
+        // If the data is stale (older than 5 minutes) then update it
+        if ((new Date() - createdTime) > (60 * 1000 * 5)) {
           return this.getSources().then((sources)=> {
             return this.getNews().then((articles)=> {
               dataObj = {
