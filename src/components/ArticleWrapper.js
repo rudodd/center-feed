@@ -11,7 +11,7 @@ class ArticleWrapper extends React.Component {
     const { article, sources } = this.props;
     const source = sources.verbose.filter(source => source.id === article.source.id)[0];
 
-    return(
+    return (
       <div className="article-wrap">
         {article.relatedArticles.length === 0 &&
           <SmallArticle article={article} source={source} />
