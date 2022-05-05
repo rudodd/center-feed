@@ -23,7 +23,7 @@ class ArticleSlider extends React.Component {
 
     // Limit related articles to 8 to keep bullets from wrapping
     const limitedRelatedArticles = article.relatedArticles.filter((article, key)=> {
-      return (key <= 8) ? true : false;
+      return (key <= 6) ? true : false;
     });
 
     return (
