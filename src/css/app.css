@@ -232,6 +232,10 @@ a:visited {
           flex-grow: 1;
 }
 
+.small-article > a .article-details .article-info.padded {
+  padding: 5px 0 0 5px;
+}
+
 .small-article > a .article-details .article-info .time p {
   margin: 0 0 5px;
   font-size: 0.75rem;
@@ -387,21 +391,6 @@ a:visited {
 /**
  * Universal helper classes ************************************
  **/
-img[alt]:after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  background: #e9ecef;
-  background: url("/public/img/no-img.svg") #f8f9fa center center no-repeat;
-  background-size: 40% 40%;
-}
-
 .source-logo img[alt] {
   font-size: 0.5rem;
 }
