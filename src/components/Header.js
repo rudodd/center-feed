@@ -7,9 +7,16 @@ class Header extends React.Component {
   }
 
   componentDidMount () {
-    window.addEventListener('load', ()=> {
-      this.setState({showHeader: true});
-    });
+
+    const isReady = async function() {
+      let ready = await document.fonts.ready;
+    }
+    
+    isReady().then(
+      setTimeout(()=> {
+        this.setState({showHeader: true})
+      }, 250)
+    );
 
     window.addEventListener('scroll', this.toggleDropShadow, true);
   }
