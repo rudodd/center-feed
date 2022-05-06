@@ -39,6 +39,10 @@
     
       .article-info {
         flex-grow: 1;
+
+        &.padded {
+          padding: 5px 0 0 5px;
+        }
   
         .time {
   
