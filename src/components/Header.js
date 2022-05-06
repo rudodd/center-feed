@@ -6,19 +6,11 @@ class Header extends React.Component {
     showHeader: false,
   }
 
-  componentDidMount () {
-
-    const isReady = async function() {
-      let ready = await document.fonts.ready;
-    }
-    
-    isReady().then(
-      setTimeout(()=> {
-        this.setState({showHeader: true})
-      }, 250)
-    );
-
+  componentDidMount() {
     window.addEventListener('scroll', this.toggleDropShadow, true);
+    document.fonts.onloadingdone = () => {
+      this.setState({showHeader: true})
+    }
   }
 
   toggleDropShadow = (e)=> {
