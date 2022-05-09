@@ -26,41 +26,24 @@
 
   .logo {
     text-align: center;
+    line-height: 0;
 
     a, a:visited {
       color: $black;
       display: inline-block;
+      line-height: 0;
 
-      h1 {
-        font-family: 'Oswald', sans-serif;
-        margin: 0;
-        text-transform: uppercase;
-        line-height: 1.1;
-        font-size: 1.5rem;
-        font-display: block;
-        @include large-only {
-          font-size: 2rem;
-          margin-top: 8px;
-        }
-
-        span {
-          color: #7536a6;
-        }
-
-        sup {
-          display: inline-block;
-          font-size: 0.9rem;
-          @include large-only {
-            font-size: 1.15rem;
-          }
-        }
+      img {
+        height: 20px;
+        width: auto;
+        margin: 2px 0;
       }
     }
   }
 
   .refresh {
     position: absolute;
-    top: 18px;
+    top: 15px;
     right: 20px;
 
     button {

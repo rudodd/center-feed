@@ -26,7 +26,7 @@ class SmallArticle extends React.Component {
       <div className="small-article">
         <a href={article.url} target="_blank" rel="noreferrer">
           <div className="article-details">
-            {article.urlToImage &&
+            {article.urlToImage && article.urlToImage !== 'null' &&
               <div className="article-img">
                 <img src={ article.urlToImage ? article.urlToImage : '/img/no-img.jpg' } alt={ article.title } />
               </div>
