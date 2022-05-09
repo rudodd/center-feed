@@ -3,30 +3,37 @@ import React from 'react';
 class Header extends React.Component {
 
   state = {
-    show: false,
+    showHeader: false,
   }
 
-  componentDidMount () {
-    this.timeoutId = setTimeout(function () {
-        this.setState({show: true});
-    }.bind(this), 1000);
-  } 
+  componentDidMount() {
+    window.addEventListener('scroll', this.toggleDropShadow, true);
+    setTimeout(()=> {
+      this.setState({showHeader: true})
+    }, 250)
+  }
 
-  componentWillUnmount () {
-    if (this.timeoutId) {
-        clearTimeout(this.timeoutId);
+  toggleDropShadow = (e)=> {
+    const header = document.getElementsByTagName('header')[0];
+    let scroll = document.getElementsByTagName('body')[0].scrollTop;
+    if (scroll >= 5) {
+      header.classList.add('shadow');
+    } else {
+      header.classList.remove('shadow');
     }
   }
+
 
   render() {
 
     const { loading, refresh } = this.props;
 
-    return(
-      <header className={this.state.show ? 'app-header show' : 'app-header'}>
+    return (
+      <header className={this.state.showHeader ? 'app-header show' : 'app-header'}>
         <div className="logo">
           <a href="/">
-            <h1><sup>The</sup> <span>Center</span> Feed</h1>
+            <img src="/img/logo.svg" alt="The Center Feed Logo"/>
+            <h1 className="sr-only">The Center Feed</h1>
           </a>
         </div>
         {!loading &&

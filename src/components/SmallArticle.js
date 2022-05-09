@@ -26,10 +26,12 @@ class SmallArticle extends React.Component {
       <div className="small-article">
         <a href={article.url} target="_blank" rel="noreferrer">
           <div className="article-details">
-            <div className="article-img">
-              <img src={ article.urlToImage } alt={ article.title } />
-            </div>
-            <div className="article-info">
+            {article.urlToImage && article.urlToImage !== 'null' &&
+              <div className="article-img">
+                <img src={ article.urlToImage ? article.urlToImage : '/img/no-img.jpg' } alt={ article.title } />
+              </div>
+            }
+            <div className={article.urlToImage ? 'article-info' : 'article-info padded'}>
               <div className="time">
                 <p>{ publishedTime } ago</p>
               </div>

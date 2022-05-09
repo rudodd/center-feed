@@ -21,10 +21,15 @@ class ArticleSlider extends React.Component {
     const { article, sources } = this.props;
     const hot = article.relatedArticles.length > 2 ? true : false;
 
-    return(
+    // Limit related articles to 8 to keep bullets from wrapping
+    const limitedRelatedArticles = article.relatedArticles.filter((article, key)=> {
+      return (key <= 6) ? true : false;
+    });
+
+    return (
       <Slider {...slickSettings}>
         <LargeArticle key={article.id} article={article} sources={sources} hot={hot} />
-        { article.relatedArticles.map((article)=> (
+        { limitedRelatedArticles.map((article)=> (
           <LargeArticle key={article.id} article={article} sources={sources} hot={hot} />
         ))}
       </Slider>
