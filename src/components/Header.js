@@ -8,9 +8,9 @@ class Header extends React.Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.toggleDropShadow, true);
-    document.fonts.onloadingdone = () => {
+    setTimeout(()=> {
       this.setState({showHeader: true})
-    }
+    }, 250)
   }
 
   toggleDropShadow = (e)=> {
@@ -32,7 +32,8 @@ class Header extends React.Component {
       <header className={this.state.showHeader ? 'app-header show' : 'app-header'}>
         <div className="logo">
           <a href="/">
-            <h1><sup>The</sup> <span>Center</span> Feed</h1>
+            <img src="/img/logo.svg" alt="The Center Feed Logo"/>
+            <h1 className="sr-only">The Center Feed</h1>
           </a>
         </div>
         {!loading &&

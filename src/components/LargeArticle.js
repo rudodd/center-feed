@@ -27,7 +27,7 @@ class LargeArticle extends React.Component {
       <div className="large-article">
         <a href={article.url} target="_blank" rel="noreferrer">
           <div className="article-img">
-            <img src={ article.urlToImage ? article.urlToImage : '/img/no-img.jpg' } alt={ article.title } />
+            <img src={ (article.urlToImage && article.urlToImage !== 'null') ? article.urlToImage : '/img/no-img.jpg' } alt={ article.title } />
           </div>
           {hot &&
             <div className="hot-icon">
