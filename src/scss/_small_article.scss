@@ -34,11 +34,16 @@
           left: 50%;
           transform: translate(-50%, -50%);
           object-fit: cover;
+          background: $grey-lightest;
         }
       }
     
       .article-info {
         flex-grow: 1;
+
+        &.padded {
+          padding: 5px 0 0 5px;
+        }
   
         .time {
   

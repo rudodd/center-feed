@@ -23,11 +23,11 @@ class LargeArticle extends React.Component {
       publishedTime = `${Math.round((difference / 60) / 24)} days`;
     }
 
-    return(
+    return (
       <div className="large-article">
         <a href={article.url} target="_blank" rel="noreferrer">
           <div className="article-img">
-            <img src={ article.urlToImage } alt={ article.title } />
+            <img src={ (article.urlToImage && article.urlToImage !== 'null') ? article.urlToImage : '/img/no-img.jpg' } alt={ article.title } />
           </div>
           {hot &&
             <div className="hot-icon">

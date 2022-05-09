@@ -8,6 +8,7 @@ import './css/app.css';
 // Import components
 import Header from './components/Header';
 import ArticleWrapper from './components/ArticleWrapper';
+import Footer from './components/Footer';
 
 // Import the data class
 import Data from './data';
@@ -64,6 +65,9 @@ class App extends React.Component {
             <ArticleWrapper key={article.id} article={article} sources={this.state.sources} />
           ))}
         </div>
+        }
+        {!this.state.loading &&
+          <Footer/>
         }
       </div>
     );

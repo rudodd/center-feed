@@ -9,13 +9,16 @@
   width: calc(100% - 30px);
   padding: 15px;
   background: $white;
-  border-bottom: solid 1px $grey-lightest;
-  box-shadow: 0px 15px 25px -5px rgba(0,0,0,0.1);
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-bottom: solid 1px $grey-lighter;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   z-index: 99999;
   opacity: 0;
-  transition: ease all 1s;
+  transition: ease all 0.5s;
+
+  &.shadow {
+    box-shadow: 0 0 5px 5px rgba(0,0,0,0.1);
+  }
 
   &.show {
     opacity: 1;
@@ -23,40 +26,24 @@
 
   .logo {
     text-align: center;
+    line-height: 0;
 
     a, a:visited {
       color: $black;
       display: inline-block;
+      line-height: 0;
 
-      h1 {
-        font-family: 'Oswald', sans-serif;
-        margin: 0;
-        text-transform: uppercase;
-        line-height: 1.1;
-        font-size: 1.5rem;
-        @include large-only {
-          font-size: 2rem;
-          margin-top: 8px;
-        }
-
-        span {
-          color: #7536a6;
-        }
-
-        sup {
-          display: inline-block;
-          font-size: 0.9rem;
-          @include large-only {
-            font-size: 1.15rem;
-          }
-        }
+      img {
+        height: 20px;
+        width: auto;
+        margin: 2px 0;
       }
     }
   }
 
   .refresh {
     position: absolute;
-    top: 18px;
+    top: 15px;
     right: 20px;
 
     button {
