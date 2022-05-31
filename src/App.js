@@ -34,11 +34,12 @@ class App extends React.Component {
 
   state = {
     loading: true,
+    initialMount: true
   }
 
   componentDidMount() {
 
-    // Initialize data object, get the feed data, and set the state
+    // Fetch inintial data
     const data = new Data();
     data.getData().then((feed)=> {
       this.setState({
