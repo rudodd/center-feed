@@ -191,7 +191,7 @@ class Data {
         // If the data is stale (older than 5 minutes) then update it
         if ((new Date() - createdTime) > (60 * 1000 * 5)) {
           return this.getSources().then((sources)=> {
-            return this.getNews().then((articles)=> {
+            return this.getNews(sources).then((articles)=> {
               dataObj = {
                 id: id,
                 timestamp: Date.now(),
