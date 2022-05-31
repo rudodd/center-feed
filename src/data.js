@@ -17,7 +17,7 @@ class Data {
    */
 
   getSources() {
-    const bannedSources = ['mtv-news','fox-news','the-washington-post','google-news','national-geographic'];
+    const bannedSources = ['mtv-news','fox-news','the-washington-post','google-news','national-geographic', 'techcrunch']; // Removed some for just poor quality stories
     const cleanURL = (url) => {
       return url.replaceAll('/', '').replace('/', '').replace('https', 'http');
     }
@@ -189,7 +189,7 @@ class Data {
         const createdTime = apiData.data.listFeeds.items[0].timestamp;
 
         // If the data is stale (older than 5 minutes) then update it
-        if ((new Date() - createdTime) > (60 * 1000 * 0)) {
+        if ((new Date() - createdTime) > (60 * 1000 * 5)) {
           return this.getSources().then((sources)=> {
             return this.getNews().then((articles)=> {
               dataObj = {
