@@ -90,7 +90,7 @@ class Data {
    * @returns an array of news artical objects for use in the UI.
    */
 
-  async getNews() {
+  async getNews(sources) {
 
     // Helper function to change shape of data to account for related articles.
     const groupArticles = (articles) => {
@@ -138,27 +138,25 @@ class Data {
       return finalArray;
     }
 
-    return this.getSources().then((sources)=> {
-      let sourceString = sources.ids.join(',');
-      return API.post('mainappapi', '/feed/newsAPIArticles', {
-        body: {
-          sources: sourceString,
-          key: secrets.newsApi.key,
-        }
-      })
-      .then(response => JSON.parse(response.data))
-      .then(data => {
-        let currentArticles = data.articles.filter((article)=> {
-          let currentTime = new Date();
-          let articleTime = new Date(article.publishedAt);
-          let difference = Math.round((currentTime - articleTime) / 1000 / 60);
-          return difference < 4320 ? true : false;
-        });
-        return groupArticles(currentArticles);
-      })
-      .catch((error) => {
-        console.error('Error fetching NewsAPI articles:', error);
+    let sourceString = sources.ids.join(',');
+    return API.post('mainappapi', '/feed/newsAPIArticles', {
+      body: {
+        sources: sourceString,
+        key: secrets.newsApi.key,
+      }
+    })
+    .then(response => JSON.parse(response.data))
+    .then(data => {
+      let currentArticles = data.articles.filter((article)=> {
+        let currentTime = new Date();
+        let articleTime = new Date(article.publishedAt);
+        let difference = Math.round((currentTime - articleTime) / 1000 / 60);
+        return difference < 4320 ? true : false;
       });
+      return groupArticles(currentArticles);
+    })
+    .catch((error) => {
+      console.error('Error fetching NewsAPI articles:', error);
     });
   }
 
@@ -175,7 +173,7 @@ class Data {
       // Create data in DB if it doesn't exist - this is a fallback in case something happens to the existing data in the DB
       if (apiData.data.listFeeds.items.length < 1) {
         return this.getSources().then((sources)=> {
-          return this.getNews().then((articles)=> {
+          return this.getNews(sources).then((articles)=> {
             dataObj = {
               timestamp: Date.now(),
               articles: JSON.stringify(articles),
@@ -191,7 +189,7 @@ class Data {
         const createdTime = apiData.data.listFeeds.items[0].timestamp;
 
         // If the data is stale (older than 5 minutes) then update it
-        if ((new Date() - createdTime) > (60 * 1000 * 5)) {
+        if ((new Date() - createdTime) > (60 * 1000 * 0)) {
           return this.getSources().then((sources)=> {
             return this.getNews().then((articles)=> {
               dataObj = {

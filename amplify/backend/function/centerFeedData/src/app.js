@@ -51,7 +51,13 @@ app.get('/feed/allSidesSources', function(req, res) {
 });
 
 app.post('/feed/newsAPISources', function(req, res) {
-  request(`https://newsapi.org/v2/sources?apiKey=${req.body.key}`, function (error, response, body) {
+  const options = {
+    url: `https://newsapi.org/v2/sources?apiKey=${req.body.key}`,
+    headers: {
+      'User-Agent': 'Mozilla/5.0'
+    }
+  };
+  request(options, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       res.json({
         success: 'Successfully fetched News API sources',
@@ -71,7 +77,13 @@ app.post('/feed/newsAPISources', function(req, res) {
 });
 
 app.post('/feed/newsAPIArticles', function(req, res) {
-  request(`https://newsapi.org/v2/top-headlines?sources=${req.body.sources}&apiKey=${req.body.key}&pageSize=100`, function (error, response, body) {
+  const options = {
+    url: `https://newsapi.org/v2/top-headlines?sources=${req.body.sources}&apiKey=${req.body.key}&pageSize=100`,
+    headers: {
+      'User-Agent': 'Mozilla/5.0'
+    }
+  };
+  request(options, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       res.json({
         success: 'Successfully fetched News API articles',
