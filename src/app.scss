@@ -1,6 +1,6 @@
 // Mixin for large screens
 @mixin large-only {
-  @media (min-width: 455px) { @content; }
+  @media (min-width: 550px) { @content; }
 }
 
 html,
@@ -16,16 +16,59 @@ body {
   @include large-only {
     background: url('/public/img/iphone.png') center center no-repeat;
     background-size: cover;
-    height: 925px;
+    height: 975px;
     width: 455px;
-    padding: 60px 40px 0 40px;
-    margin: 50px auto;
+    padding: 47px 40px 60px 40px;
+    margin: 75px auto;
+  }
+
+  .desktop-notification {
+    display: none;
+    @include large-only {
+      display: flex;
+      position: absolute;
+      top: 60px;
+      left: 5px;
+      width: 90%;
+      max-width: 350px;
+      padding: 15px;
+      background: #f8edeb;
+      color: #6d6875;
+      border-radius: 10px;
+      border: solid 2px #e56b6f;
+    }
+
+    svg {
+      width: 25px;
+      fill: #e56b6f;
+    }
+
+    p {
+      margin: 0;
+      width: calc(100% - 50px);
+      margin: 0 15px 0 auto;
+    }
+
+    button {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: none;
+      border: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      text-transform: lowercase;
+      color: #6d6875;
+      cursor: pointer;
+    }
   }
 }
 
 .app-container {
   margin: 80px 0 0;
   @include large-only {
+    margin: 25px 0;
     height: 100%;
     width: 100%;
     overflow: scroll;
