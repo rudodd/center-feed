@@ -8,6 +8,13 @@ footer {
   padding: 10px 20px;
   text-align: center;
 
+  @include large-only {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
   p {
     font-size: 0.7rem;
     color: $grey-dark;
