@@ -53,8 +53,8 @@ body {
 
 .app .desktop-notification button {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 4px;
+  right: 4px;
   background: none;
   border: 0;
   font-family: Arial, Helvetica, sans-serif;
