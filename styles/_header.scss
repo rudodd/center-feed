@@ -1,0 +1,59 @@
+/**
+ * Header component styles *****************************************
+ **/
+
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100% - 30px);
+  padding: 15px;
+  background: $white;
+  border-bottom: solid 1px $grey-lighter;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  z-index: 99999;
+  opacity: 0;
+  transition: ease all 0.5s;
+
+  &.shadow {
+    box-shadow: 0 0 5px 5px rgba(0,0,0,0.1);
+  }
+
+  &.show {
+    opacity: 1;
+  }
+
+  .logo {
+    text-align: center;
+    line-height: 0;
+
+    a, a:visited {
+      color: $black;
+      display: inline-block;
+      line-height: 0;
+
+      img {
+        height: 20px;
+        width: auto;
+        margin: 2px 0;
+      }
+    }
+  }
+
+  .refresh {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+
+    button {
+      border: 0;
+      background: transparent;
+      padding: 0;
+
+      svg {
+        fill: $purple;
+      }
+    }
+  }
+}
