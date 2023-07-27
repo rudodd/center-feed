@@ -1,4 +1,6 @@
 import React from "react";
+import Link from 'next/link';
+
 
 class SourceDetails extends React.Component {
 
@@ -25,12 +27,12 @@ class SourceDetails extends React.Component {
     return (
       <div className="source-details">
         <div className="source-logo">
-          <a href={ source.url } target="_blank" rel="noreferrer">
+          <Link href={ source.url } target="_blank" rel="noreferrer">
           <img src={ sourceLogo } alt={ source.name } />
-          </a>
+          </Link>
         </div>
         <div className="lean-info">
-          <a href={ source.allSidesURL } target="_blank" rel="noreferrer">Source leans: <span className={ leanClass }>{ leanText }</span></a>
+          <Link href={ source.allSidesURL } target="_blank" rel="noreferrer">Source leans: <span className={ leanClass }>{ leanText }</span></Link>
         </div>
       </div>
     )
