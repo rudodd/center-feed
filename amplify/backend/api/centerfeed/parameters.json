@@ -1,6 +1,0 @@
-{
-  "AppSyncApiName": "centerfeed",
-  "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2022-04-14T21:04:13.817Z"
-}
