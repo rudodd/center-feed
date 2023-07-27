@@ -1,7 +1,7 @@
 import React from "react";
 import SourceDetails from "./SourceDetails";
 import Link from 'next/link';
-import Image from 'next/image';
+
 
 class SmallArticle extends React.Component {
 
@@ -30,7 +30,7 @@ class SmallArticle extends React.Component {
           <div className="article-details">
             {article.urlToImage && article.urlToImage !== 'null' &&
               <div className="article-img">
-                <Image src={ article.urlToImage ? article.urlToImage : '/img/no-img.jpg' } alt={ article.title } />
+                <img src={ article.urlToImage ? article.urlToImage : '/img/no-img.jpg' } alt={ article.title } />
               </div>
             }
             <div className={article.urlToImage ? 'article-info' : 'article-info padded'}>
