@@ -1,6 +1,8 @@
 import React from 'react';
 
 import Head from 'next/head';
+import Link from 'next/link';
+
 
 class Header extends React.Component {
 
@@ -48,10 +50,10 @@ class Header extends React.Component {
         </Head>
         <header className={this.state.showHeader ? 'app-header show' : 'app-header'}>
         <div className="logo">
-          <a href="/">
-            <img src="/img/logo.svg" alt="The Center Feed Logo"/>
+          <Link href="/">
+            <img src="/img/logo.svg" alt="The Center Feed Logo" />
             <h1 className="sr-only">The Center Feed</h1>
-          </a>
+          </Link>
         </div>
         {!loading &&
           <div className="refresh">

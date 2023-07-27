@@ -1,5 +1,7 @@
 import React from "react";
 import SourceDetails from "./SourceDetails";
+import Link from 'next/link';
+
 
 class SmallArticle extends React.Component {
 
@@ -24,7 +26,7 @@ class SmallArticle extends React.Component {
 
     return (
       <div className="small-article">
-        <a href={article.url} target="_blank" rel="noreferrer">
+        <Link href={article.url} target="_blank" rel="noreferrer">
           <div className="article-details">
             {article.urlToImage && article.urlToImage !== 'null' &&
               <div className="article-img">
@@ -40,7 +42,7 @@ class SmallArticle extends React.Component {
               </div>
             </div>
           </div>
-        </a>
+        </Link>
         <SourceDetails source={source} />
       </div>
     )

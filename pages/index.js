@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import ArticleWrapper from '../components/ArticleWrapper';
 import Footer from '../components/Footer';
 
+
 // Import the data class
 import Data from '../data';
 import { empty } from '../helpers';
