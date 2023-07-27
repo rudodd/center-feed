@@ -60,21 +60,37 @@ class Data {
       }
     }
 
-    // Get all sources - first all sides medai, then news api 
-    return fetch('/api/all-sides-sources')
+    // Get all sources - first all sides medai, then news api
+    const fetchCalls = [
+      fetch('/api/all-sides-sources')
+        .then((res) => {
+          if (res.ok) {
+            return res.json()
+              .then((data) => {
+                return {valid: true, data: data}
+              })
+          } else {
+            console.error('Error fetching AllSides Media sources:', res);
+            return {valid: false, data: null}
+          }
+        }),
+      fetch('/api/news-api-sources', {method: 'POST', body: JSON.stringify({key: secrets.newsApi.key})})
+        .then((res) => {
+          if (res.ok) {
+            return res.json()
+              .then((data) => {
+                return {valid: true, data: data}
+              })
+          } else {
+            console.error('Error fetching NewsAPI sources:', res);
+            return {valid: false, data: null}
+          }
+        }),
+    ]
+
+    return Promise.all(fetchCalls)
       .then((res) => {
-        if (res.ok) {
-          return fetch(`/api/news-api-sources`, {method: 'POST', body: {key: secrets.newsApi.key}})
-            .then((res) => {
-              if (res.ok) {
-                return filterSources(JSON.parse(allSidesData.data), JSON.parse(newsAPIData.data));
-              } else {
-                console.error('Error fetching NewsAPI sources:', res);
-              }
-            })
-        } else {
-          console.error('Error fetching AllSides Media sources:', res);
-        }
+        return filterSources(res[0].data, res[1].data);
       })
   }
   
@@ -132,10 +148,10 @@ class Data {
     }
 
     let sourceString = sources.ids.join(',');
-    return fetch('/api/news', {method: 'POST', body: {key: secrets.newsApi.key, sources: sourceString}})
+    return fetch('/api/news', {method: 'POST', body: JSON.stringify({key: secrets.newsApi.key, sources: sourceString})})
       .then((res) => {
         if (res.ok) {
-          res.json()
+          return res.json()
             .then((data) => {
               let currentArticles = data.articles.filter((article)=> {
                 let currentTime = new Date();
