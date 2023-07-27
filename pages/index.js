@@ -4,6 +4,7 @@ import React from 'react';
 import Header from '../components/Header';
 import ArticleWrapper from '../components/ArticleWrapper';
 import Footer from '../components/Footer';
+import Image from 'next/image';
 
 // Import the data class
 import Data from '../data';
@@ -69,7 +70,7 @@ class Home extends React.Component {
         }
         {this.state.loading &&
           <div className="loading-container">
-            <img src="/img/loading.gif" alt="loading" />
+            <Image src="/img/loading.gif" alt="loading" />
           </div>
         }
         {!this.state.loading &&
