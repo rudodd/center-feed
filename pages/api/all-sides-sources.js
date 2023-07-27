@@ -1,8 +1,8 @@
 export default function handler(req, res) {
-  fetch('https://www.allsides.com/media-bias/json/noncommercial/publications')
+  return fetch('https://www.allsides.com/media-bias/json/noncommercial/publications')
     .then((response) => {
       if (response.ok) {
-        response.json()
+        return response.json()
           .then((json) => res.status(200).json(json))
       } else {
         res.status(response.status).json(response)
