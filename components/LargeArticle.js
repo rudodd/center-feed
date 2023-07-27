@@ -1,7 +1,7 @@
 import React from "react";
 import SourceDetails from "./SourceDetails";
 import Link from 'next/link';
-import Image from 'next/image';
+
 
 class LargeArticle extends React.Component {
 
@@ -29,7 +29,7 @@ class LargeArticle extends React.Component {
       <div className="large-article">
         <Link href={article.url} target="_blank" rel="noreferrer">
           <div className="article-img">
-            <Image src={ (article.urlToImage && article.urlToImage !== 'null') ? article.urlToImage : '/img/no-img.jpg' } alt={ article.title } />
+            <img src={ (article.urlToImage && article.urlToImage !== 'null') ? article.urlToImage : '/img/no-img.jpg' } alt={ article.title } />
           </div>
           {hot &&
             <div className="hot-icon">

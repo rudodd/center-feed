@@ -1,5 +1,6 @@
 import React from "react";
-import Image from 'next/image';
+import Link from 'next/link';
+
 
 class SourceDetails extends React.Component {
 
@@ -27,7 +28,7 @@ class SourceDetails extends React.Component {
       <div className="source-details">
         <div className="source-logo">
           <Link href={ source.url } target="_blank" rel="noreferrer">
-          <Image src={ sourceLogo } alt={ source.name } />
+          <img src={ sourceLogo } alt={ source.name } />
           </Link>
         </div>
         <div className="lean-info">
