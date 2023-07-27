@@ -23,7 +23,6 @@ class Home extends React.Component {
   }
 
   closeNotification = ()=> {
-    console.log('button clicked')
     this.setState({
       hideNotification: true
     })
@@ -46,7 +45,6 @@ class Home extends React.Component {
     // Fetch inintial data
     const data = new Data();
     data.getData().then((feed)=> {
-      console.log(feed);
       if (!empty(feed)) {
         this.setState({
           loading: false,

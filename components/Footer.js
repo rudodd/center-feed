@@ -11,7 +11,6 @@ class Footer extends React.Component {
     const year = new Date().getFullYear();
 
     const toggleAttribution = ()=> {
-      console.log(this.state.showAttribution);
       this.setState({showAttribution: !this.state.showAttribution})
     }
 

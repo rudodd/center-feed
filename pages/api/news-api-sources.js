@@ -1,5 +1,4 @@
 export default function handler(req, res) {
-  console.log(req);
   fetch(`https://newsapi.org/v2/sources?apiKey=${req.body.key}`)
     .then((response) => {
       if (response.ok) {
