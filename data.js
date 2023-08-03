@@ -60,7 +60,7 @@ class Data {
       }
     }
 
-    // Get all sources - first all sides medai, then news api
+    // Build array of fetches for all sources  - first all sides media, then news api
     const fetchCalls = [
       fetch('/api/all-sides-sources')
         .then((res) => {
@@ -88,6 +88,7 @@ class Data {
         }),
     ]
 
+    // Fetch all sources
     return Promise.all(fetchCalls)
       .then((res) => {
         return filterSources(res[0].data, res[1].data);
@@ -177,7 +178,6 @@ class Data {
         return this.getNews(sources).then((articles)=> {
           if (!empty(articles)) {
             return {
-              timestamp: Date.now(),
               articles: JSON.stringify(articles),
               sources: JSON.stringify(sources),
             }
