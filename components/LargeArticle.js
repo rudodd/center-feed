@@ -1,6 +1,9 @@
 // import library functionality
 import React from "react";
 
+// import custom functionality
+import { getPublishedTime } from '../helpers';
+
 // import components
 import SourceDetails from "./SourceDetails";
 import Link from 'next/link';
@@ -9,26 +12,7 @@ export default function LargeArticle(props) {
 
   const { article, sources, hot } = props;
   const source = sources.verbose.filter(source => source.id === article.source.id)[0];
-  let publishedTime = '0 minutes';
-  const currentTime = new Date();
-  const articleTime = new Date(article.publishedAt);
-  const difference = Math.round((currentTime - articleTime) / 1000 / 60);
-  switch (difference) {
-    case (difference < 60):
-      publishedTime = `${difference} minutes`;
-      break;
-    case ((difference / 60) <= 1.5):
-      publishedTime = "1 hour";
-      break;
-    case ((difference / 60) <= 24):
-      publishedTime = `${Math.round(difference / 60)} hours`;
-      break;
-    case (((difference / 60) / 24) <= 1.5):
-      publishedTime = '1 day';
-      break;
-    default:
-      publishedTime = `${Math.round((difference / 60) / 24)} days`;
-  }
+  const publishedTime = getPublishedTime(article.publishedAt)
 
   return (
     <div className="large-article">
