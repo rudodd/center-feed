@@ -29,3 +29,28 @@ export const empty = (variable) => {
     return false;
   }
 }
+
+// Helper function to return the published time for an article
+export const getPublishedTime = (publishedAt) => {
+  let publishedTime = '0 minutes';
+  const currentTime = new Date();
+  const articleTime = new Date(publishedAt);
+  const difference = Math.round((currentTime - articleTime) / 1000 / 60);
+  switch (difference) {
+    case (difference < 60):
+      publishedTime = `${difference} minutes`;
+      break;
+    case ((difference / 60) <= 1.5):
+      publishedTime = "1 hour";
+      break;
+    case ((difference / 60) <= 24):
+      publishedTime = `${Math.round(difference / 60)} hours`;
+      break;
+    case (((difference / 60) / 24) <= 1.5):
+      publishedTime = '1 day';
+      break;
+    default:
+      publishedTime = `${Math.round((difference / 60) / 24)} days`;
+  }
+  return publishedTime;
+}
