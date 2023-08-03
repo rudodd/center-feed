@@ -4,7 +4,7 @@ import React, { useState } from "react";
 // import components
 import Link from 'next/link';
 
-export default function Footer(props) {
+export default function Footer() {
 
   const year = new Date().getFullYear();
   const [showAttribution, setShowAttribution] = useState(false);
