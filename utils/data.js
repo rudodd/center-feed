@@ -1,4 +1,4 @@
-import secrets from "./secrets";
+import secrets from "../secrets";
 import { empty } from './helpers';
 import { commonWordArray, specialCharacters } from './data_sets/dataSets';
 

@@ -2,7 +2,7 @@
 import React from "react";
 
 // import custom functionality
-import { getPublishedTime } from '../helpers';
+import { getPublishedTime } from '../utils/helpers';
 
 // import components
 import SourceDetails from "./SourceDetails";

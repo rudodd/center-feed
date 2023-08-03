@@ -7,8 +7,8 @@ import ArticleWrapper from '../components/ArticleWrapper';
 import Footer from '../components/Footer';
 
 // import custom functionality
-import Data from '../data';
-import { empty } from '../helpers';
+import Data from '../utils/data';
+import { empty } from '../utils/helpers';
 
 export default function Home() {
 
