@@ -1,3 +1,4 @@
+// import library functionality
 import React, { useState, useEffect } from 'react';
 
 // Import components
@@ -5,7 +6,7 @@ import Header from '../components/Header';
 import ArticleWrapper from '../components/ArticleWrapper';
 import Footer from '../components/Footer';
 
-// Import the data class
+// import custom functionality
 import Data from '../data';
 import { empty } from '../helpers';
 
