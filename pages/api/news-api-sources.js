@@ -1,6 +1,6 @@
+const apiKey = process.env.API_KEY;
 export default function handler(req, res) {
-  const body = JSON.parse(req.body)
-  return fetch(`https://newsapi.org/v2/sources?apiKey=${body.key}`)
+  return fetch(`https://newsapi.org/v2/sources?apiKey=${apiKey}`)
     .then((response) => {
       if (response.ok) {
         return response.json()

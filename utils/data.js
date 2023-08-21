@@ -1,4 +1,3 @@
-import secrets from "../secrets";
 import { empty } from './helpers';
 import { commonWordArray, specialCharacters } from './data_sets/dataSets';
 
@@ -74,7 +73,7 @@ class Data {
             return {valid: false, data: null}
           }
         }),
-      fetch('/api/news-api-sources', {method: 'POST', body: JSON.stringify({key: secrets.newsApi.key})})
+      fetch('/api/news-api-sources', {method: 'POST'})
         .then((res) => {
           if (res.ok) {
             return res.json()
@@ -149,7 +148,7 @@ class Data {
     }
 
     let sourceString = sources.ids.join(',');
-    return fetch('/api/news', {method: 'POST', body: JSON.stringify({key: secrets.newsApi.key, sources: sourceString})})
+    return fetch('/api/news', {method: 'POST', body: JSON.stringify({sources: sourceString})})
       .then((res) => {
         if (res.ok) {
           return res.json()
