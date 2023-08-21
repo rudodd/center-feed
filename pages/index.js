@@ -1,14 +1,14 @@
-// import library functionality
+// Import library functionality
 import React, { useState, useEffect } from 'react';
+
+// Import custom functionality
+import Data from '../utils/data';
+import { empty } from '../utils/helpers';
 
 // Import components
 import Header from '../components/Header';
 import ArticleWrapper from '../components/ArticleWrapper';
 import Footer from '../components/Footer';
-
-// import custom functionality
-import Data from '../utils/data';
-import { empty } from '../utils/helpers';
 
 export default function Home() {
 

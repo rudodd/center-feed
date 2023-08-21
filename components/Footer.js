@@ -1,7 +1,7 @@
-// import library functionality
+// Import library functionality
 import React, { useState } from "react";
 
-// import components
+// Import components
 import Link from 'next/link';
 
 export default function Footer() {

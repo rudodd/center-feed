@@ -1,34 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# The Center Feed
+
+The center feed is an app designed for mobile use that displays current news from only center leaning, center-left leaning and center-right leaning news organizations.  It does this by fetching the current news from [NewsAPI](https://newsapi.org/) and filtering it down to only the news organizations that are rated as center, center-left, or center-right by [All Sides Media](https://www.allsides.com/).
+
+__NOTE:__ Unfortunately NewsAPI changed their API's free plan to only return articles on a 24 hour delay, which used to be a 15 minute delay.  I have not found a suitable free substitute, but would love any suggestions.
+
+## Features
+- Real time news articles from center leaning sources (as mentioned above, this is now on a 24 hour delay)
+- Related article grouping and hot topic indication
+- Link on each article to information regarding how the article's source leans
 
 ## Getting Started
 
-First, run the development server:
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+It uses minimal additional npm packages, but those used are as follows:
+- [Slick Carousel](https://www.npmjs.com/package/slick-carousel) - Used for the mobile friendly slider for related articles
+
+To run the development server:
 
 ```bash
+npm ci
 npm run dev
 # or
 yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

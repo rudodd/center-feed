@@ -1,4 +1,4 @@
-// import library functionality
+// Import library functionality
 import React from "react";
 
 // Import components

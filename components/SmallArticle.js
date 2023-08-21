@@ -1,10 +1,10 @@
-// import library functionalty
+// Import library functionalty
 import React from "react";
 
-// import custom functionality
+// Import custom functionality
 import { getPublishedTime } from '../utils/helpers';
 
-// import components
+// Import components
 import SourceDetails from "./SourceDetails";
 import Link from 'next/link';
 

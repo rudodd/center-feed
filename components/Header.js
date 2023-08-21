@@ -1,7 +1,7 @@
-// import library functionality
+// Import library functionality
 import React, { useState, useEffect } from 'react';
 
-// import components
+// Import components
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -10,7 +10,7 @@ export default function Header(props) {
   const { loading, refresh } = props;
   const [showHeader, setShowHeader] = useState(false);
 
-  // function to toggle the drop shadow un the header if scrolled below the absolute top
+  // Function to toggle the drop shadow for the header if scrolled below the absolute top
   const toggleDropShadow = (e)=> {
     const header = document.getElementsByTagName('header')[0];
     let scroll = document.getElementsByTagName('body')[0].scrollTop;
