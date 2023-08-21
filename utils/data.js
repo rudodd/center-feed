@@ -1,4 +1,3 @@
-import secrets from "./secrets";
 import { empty } from './helpers';
 import { commonWordArray, specialCharacters } from './data_sets/dataSets';
 
@@ -60,7 +59,7 @@ class Data {
       }
     }
 
-    // Get all sources - first all sides medai, then news api
+    // Build array of fetches for all sources  - first all sides media, then news api
     const fetchCalls = [
       fetch('/api/all-sides-sources')
         .then((res) => {
@@ -74,7 +73,7 @@ class Data {
             return {valid: false, data: null}
           }
         }),
-      fetch('/api/news-api-sources', {method: 'POST', body: JSON.stringify({key: secrets.newsApi.key})})
+      fetch('/api/news-api-sources', {method: 'POST'})
         .then((res) => {
           if (res.ok) {
             return res.json()
@@ -88,6 +87,7 @@ class Data {
         }),
     ]
 
+    // Fetch all sources
     return Promise.all(fetchCalls)
       .then((res) => {
         return filterSources(res[0].data, res[1].data);
@@ -148,7 +148,7 @@ class Data {
     }
 
     let sourceString = sources.ids.join(',');
-    return fetch('/api/news', {method: 'POST', body: JSON.stringify({key: secrets.newsApi.key, sources: sourceString})})
+    return fetch('/api/news', {method: 'POST', body: JSON.stringify({sources: sourceString})})
       .then((res) => {
         if (res.ok) {
           return res.json()
@@ -177,7 +177,6 @@ class Data {
         return this.getNews(sources).then((articles)=> {
           if (!empty(articles)) {
             return {
-              timestamp: Date.now(),
               articles: JSON.stringify(articles),
               sources: JSON.stringify(sources),
             }
