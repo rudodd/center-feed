@@ -1,7 +1,7 @@
-// import library functionality
+// Import library functionality
 import React from "react";
 
-// import components
+// Import components
 import Link from 'next/link';
 
 export default function SourceDetails(props) {

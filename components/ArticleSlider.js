@@ -1,8 +1,8 @@
-// import library functionality
+// Import library functionality
 import React from "react";
 import Slider from "react-slick";
 
-// import components
+// Import components
 import LargeArticle from "./LargeArticle";
 
 export default function ArticleSlider(props){
