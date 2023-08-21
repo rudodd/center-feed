@@ -2,6 +2,8 @@
 
 The center feed is an app designed for mobile use that displays current news from only center leaning, center-left leaning and center-right leaning news organizations.  It does this by fetching the current news from [NewsAPI](https://newsapi.org/) and filtering it down to only the news organizations that are rated as center, center-left, or center-right by [All Sides Media](https://www.allsides.com/).
 
+Live app (designed for use on mobile): [centerfeed.org](https://www.centerfeed.com)
+
 __NOTE:__ Unfortunately NewsAPI changed their API's free plan to only return articles on a 24 hour delay, which used to be a 15 minute delay.  I have not found a suitable free substitute, but would love any suggestions.
 
 ## Features
