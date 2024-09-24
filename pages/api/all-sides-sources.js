@@ -1,5 +1,15 @@
 export default function handler(req, res) {
-  return fetch('https://www.allsides.com/media-bias/json/noncommercial/publications')
+  const options = {
+    method: 'GET',
+    hostname: 'political-bias-database.p.rapidapi.com',
+    port: null,
+    path: '/',
+    headers: {
+      'x-rapidapi-key': 'f096819199msh539dfcd3b2394c1p128b3cjsn2307ae796a4c',
+      'x-rapidapi-host': 'political-bias-database.p.rapidapi.com'
+    }
+  };
+  return fetch('https://political-bias-database.p.rapidapi.com/ASdata', options)
     .then((response) => {
       if (response.ok) {
         return response.json()

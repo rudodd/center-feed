@@ -1,5 +1,7 @@
+const apiKey = process.env.API_KEY;
 export default function handler(req, res) {
-  return fetch(`https://ok.surf/api/v1/news-feed`)
+  const body = JSON.parse(req.body)
+  return fetch(`https://newsapi.org/v2/top-headlines?sources=${body.sources}&apiKey=${apiKey}&pageSize=100`)
     .then((response) => {
       if (response.ok) {
         return response.json()
