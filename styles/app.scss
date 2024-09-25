@@ -31,6 +31,46 @@ $purple: #7536a6;
 $orange: #f18701;
 
 /**
+ * Typoagraphy Styles ********************************************
+ **/
+
+ body {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.35;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+  margin-top: 0;
+}
+
+a,
+a:visited {
+  color: initial;
+  text-decoration: none;
+}
+
+/**
+ * Universal helper classes ************************************
+ **/
+
+//  Screen reader only
+.sr-only {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
+/**
  * App styles *************************************************
  **/
 
@@ -124,12 +164,6 @@ body {
   }
 }
 
-@import './colors';
-@import './typograhpy';
+
 @import './header';
 @import './footer';
-@import './loading';
-@import './small_article';
-@import './slider';
-@import './large_article';
-@import './helpers.scss';
