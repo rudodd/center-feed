@@ -73,7 +73,8 @@
         button {
           background: none;
           border: 0;
-          
+          color: $grey-darkest;
+          font-size: 0.9rem;
 
           &.active {
             color: $purple;
