@@ -33,6 +33,7 @@ export default function useData() {
   }
 
   useEffect(() => {
+    console.log(sources);
     if (sources.length) {
       fetchData();
     }
