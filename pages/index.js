@@ -1,71 +1,53 @@
 // import library functionality
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // import custom functionality
 import useData from '../utils/useData';
 
 // import components
 import Header from '../components/Header';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Link from 'next/link';
+import Article from '../components/Article';
+import ArticleSkeleton from '../components/ArticleSkeleton';
+import Skeleton from '@mui/material/Skeleton';
 
 export default function Home() {
-  const { data, isLoading, sections } = useData();
+  const { data, isLoading, sections, fetchData } = useData();
   const [selected, setSelected] = useState(sections);
+  const prevSelected = useRef(selected);
+
+  useEffect(() => {
+    if (selected.length !== prevSelected.current.length || selected[0] !== prevSelected.current[0]) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      prevSelected.current = selected;
+    }
+  }, [selected])
 
   return (
     <div className="app">
-      <Header loading={isLoading} refresh={null}/>
-      {isLoading ? (
-        <div>Loading</div>
-      ) : (
-        <div className="app-container">
-          {selected.map((section) => (
+      <Header loading={isLoading} refresh={fetchData} sections={sections} selected={selected} setSelected={setSelected} />
+      <div className="app-container">
+        {isLoading ? (
+          <>
+            <div className="section-title">
+              <h2><Skeleton variant="rounded" width={100} /></h2>
+            </div>
+            {[0,0,0,0,0].map((i, k) => (
+              <ArticleSkeleton key={k} />
+            ))}
+          </>
+        ) : (
+          selected.map((section) => (
             <React.Fragment key={`${section}-wrap`}>
               <div className="section-title">
                 <h2>{section === 'US' ? 'U.S.' : section}</h2>
-                <div></div>
               </div>
               {data[section].map((article, i) => (
-                <Card key={`${section}-${i}`} className="article">
-                  <CardMedia
-                    component="img"
-                    sx={{ height: 175 }}
-                    image={article.og}
-                    alt={article.title}
-                  />
-                  <Link href={article.link} target="_blank" rel="noreferrer">
-                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                      <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                        <div className="source">
-                          <CardMedia
-                            component="img"
-                            sx={{ width: 20 }}
-                            image={article.source_icon}
-                            alt={article.source}
-                          />
-                          <p>{article.source}</p>
-                        </div>
-                        <div className="title">
-                          <p>{article.title}</p>
-                        </div>
-                        <div className="bias">
-                          <p>Source: <span className={article.bias}>
-                            {article.bias === 'left-center' ? 'Leans left' : article.bias === 'Leans right' ? 'Right center' : 'Leans center'}
-                          </span></p>
-                        </div>
-                      </CardContent>
-                    </Box>
-                  </Link>
-                </Card>
+                <Article key={`${section}-${i}`} article={article} />
               ))}
             </React.Fragment>
-          ))}
-        </div>
-      )}
+          ))
+        )}
+      </div>
     </div>
   )
 }

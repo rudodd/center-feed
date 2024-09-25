@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function Header(props) {
 
-  const { loading, refresh } = props;
+  const { loading, refresh, sections, selected, setSelected } = props;
   const [showHeader, setShowHeader] = useState(false);
 
   // Function to toggle the drop shadow for the header if scrolled below the absolute top
@@ -59,6 +59,14 @@ export default function Header(props) {
           </button>
         </div>
       }
+      <div className="navigation">
+        <ul>
+          <li><button onClick={() => setSelected(sections)} className={selected.length > 1 ? 'active' : ''}>All</button></li>
+          {sections.map((s) => (
+            <li key={`nav-${s}`}><button onClick={() => setSelected([s])} className={selected.length === 1 && selected[0] === s ? 'active' : ''}>{s === 'US' ? 'U.S' : s}</button></li>
+          ))}
+        </ul>
+      </div>
     </header>
     </>
   )

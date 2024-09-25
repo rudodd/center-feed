@@ -16,7 +16,7 @@ $white: #fff;
 $black: #212529;
 
 // Greyscale color set
-$grey-lightest: #f5f5f5;
+$grey-lightest: #f1f1f1;
 $grey-lighter: #e9ecef;
 $grey-light: #dee2e6;
 $grey: #ced4da;
@@ -76,12 +76,15 @@ a:visited {
 
 html,
 body {
-  height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
   background: $grey-lightest;
+  overflow-y: scroll;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .app {
@@ -93,22 +96,21 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 2rem 1rem 1rem;
+  padding: 3rem 1rem 1rem;
 
   .section-title {
-    display: flex;
-    align-items: center;
     gap: 1rem;
+    padding: 0.5rem 0 0.5rem 0.75rem;
+    background: linear-gradient(to right, rgba(0,0,0, 0.033), rgba(0,0,0, 0.05) 100%);
+    border-radius: 4px;
+
+    &:first-of-type {
+      margin-top: 2rem;
+    }
 
     h2 {
       margin: 0;
-      flex-shrink: 1;
-    }
-
-    div {
-      flex-grow: 1;
-      border-bottom: solid 1.5px $purple;
-      padding: 0.2rem 0 0;
+      font-weight: 400;
     }
   }
 
@@ -144,7 +146,7 @@ body {
         font-size: 0.8rem;
         font-weight: 600;
 
-        span {
+        span:not(.MuiSkeleton-root) {
           margin-left: 0.5rem;
 
           &.left-center {

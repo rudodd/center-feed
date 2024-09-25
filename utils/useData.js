@@ -7,6 +7,9 @@ export default function useData() {
   const sections = ['US', 'Business', 'Technology', 'World', 'Health', 'Science', 'Sports', 'Entertainment'];
 
   const fetchData = () => {
+    if (!isLoading) {
+      setIsLoading(true);
+    }
     const newsObj = {};
     fetch('/api/news')
       .then((res) => res.json())
@@ -22,7 +25,9 @@ export default function useData() {
           newsObj[s] = filteredNews;
         })
         setData(newsObj);
-        setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 750);
       });
   }
 
@@ -33,7 +38,6 @@ export default function useData() {
   }
 
   useEffect(() => {
-    console.log(sources);
     if (sources.length) {
       fetchData();
     }

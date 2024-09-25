@@ -7,22 +7,13 @@
   top: 0;
   left: 0;
   width: calc(100% - 30px);
-  padding: 15px;
+  padding: 15px 15px 5px;
   background: $white;
   border-bottom: solid 1px $grey-lighter;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   z-index: 99999;
-  opacity: 0;
-  transition: ease all 0.5s;
-
-  &.shadow {
-    box-shadow: 0 0 5px 5px rgba(0,0,0,0.1);
-  }
-
-  &.show {
-    opacity: 1;
-  }
+  box-shadow: 0 0 5px 1px rgba(0,0,0,0.1);
 
   .logo {
     text-align: center;
@@ -53,6 +44,52 @@
 
       svg {
         fill: $purple;
+      }
+    }
+  }
+
+  .navigation {
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 0.75rem;
+
+      li {
+        margin: 0;
+        padding: 0;
+
+        button {
+          background: none;
+          border: 0;
+          
+
+          &.active {
+            color: $purple;
+            position: relative;
+
+            &::after {
+              content: '';
+              position: absolute;
+              width: calc(100% - 7px);
+              left: 50%;
+              transform: translateX(-50%);
+              bottom: -7px;
+              border-bottom: solid 2px $purple;
+            }
+          }
+        }
       }
     }
   }
