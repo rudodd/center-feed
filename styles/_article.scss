@@ -1,0 +1,54 @@
+/**
+ * Styles for the Article component **************************************
+ **/
+
+ .article {
+  display: flex;
+  flex-direction: column;
+
+  .source {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    p {
+      font-weight: 700;
+      font-size: 0.7rem;
+      margin: 0;
+    }
+  }
+
+  .title {
+
+    p {
+      margin: 0;
+      font-weight: 600;
+    }
+  }
+
+  .bias {
+
+    p {
+      color: $grey-darkest;
+      margin: 0.5rem 0 0;
+      font-size: 0.8rem;
+      font-weight: 600;
+
+      span:not(.MuiSkeleton-root) {
+        margin-left: 0.5rem;
+
+        &.left-center {
+          color: $blue;
+        }
+
+        &.right-center {
+          color: $red;
+        }
+
+        &.center {
+          color: $purple;
+        }
+      }
+    }
+  }
+}

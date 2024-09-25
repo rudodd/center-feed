@@ -1,4 +1,8 @@
+// import library functionality
 import { useState, useEffect } from 'react';
+
+// import custom functionality
+import { empty } from './helpers';
 
 export default function useData() {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,7 +42,7 @@ export default function useData() {
   }
 
   useEffect(() => {
-    if (sources.length) {
+    if (!empty(sources)) {
       fetchData();
     }
   }, [sources])
