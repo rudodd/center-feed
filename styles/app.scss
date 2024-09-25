@@ -7,6 +7,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+/**
+ * Color SASS Variables ***************************************
+ **/
+
+// Override pure contrast black and white
+$white: #fff;
+$black: #212529;
+
+// Greyscale color set
+$grey-lightest: #f5f5f5;
+$grey-lighter: #e9ecef;
+$grey-light: #dee2e6;
+$grey: #ced4da;
+$grey-dark: #adb5bd;
+$grey-darker: #6c757d;
+$grey-darkest: #495057;
+
+// Primary colors
+$red: #ff595e;
+$blue: #1982c4;
+$purple: #7536a6;
+$orange: #f18701;
+
+/**
+ * App styles *************************************************
+ **/
+
 html,
 body {
   height: 100%;
@@ -14,70 +41,86 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  background: $grey-lightest;
 }
 
 .app {
-  @include large-only {
-    background: url('/img/iphone.png') center center no-repeat;
-    background-size: cover;
-    height: 975px;
-    width: 455px;
-    padding: 47px 40px 60px 40px;
-    margin: 75px auto;
-  }
-
-  .desktop-notification {
-    display: none;
-    @include large-only {
-      display: flex;
-      position: absolute;
-      top: 60px;
-      left: 5px;
-      width: 90%;
-      max-width: 350px;
-      padding: 15px;
-      background: #f8edeb;
-      color: #6d6875;
-      border-radius: 10px;
-      border: solid 2px #e56b6f;
-    }
-
-    svg {
-      width: 25px;
-      fill: #e56b6f;
-    }
-
-    p {
-      margin: 0;
-      width: calc(100% - 50px);
-      margin: 0 15px 0 auto;
-    }
-
-    button {
-      position: absolute;
-      top: 4px;
-      right: 4px;
-      background: none;
-      border: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: 300;
-      font-size: 16px;
-      text-transform: lowercase;
-      color: #6d6875;
-      cursor: pointer;
-    }
-  }
+  background: none;
 }
 
 .app-container {
-  margin: 80px 0 0;
-  @include large-only {
-    margin: 25px 0;
-    height: 100%;
-    width: 100%;
-    overflow: scroll;
-    border-bottom-left-radius: 35px;
-    border-bottom-right-radius: 35px;
+  margin: 3rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 1rem 1rem;
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    h2 {
+      margin: 0;
+      flex-shrink: 1;
+    }
+
+    div {
+      flex-grow: 1;
+      border-bottom: solid 1.5px $purple;
+      padding: 0.2rem 0 0;
+    }
+  }
+
+  .article {
+    display: flex;
+    flex-direction: column;
+
+    .source {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+
+      p {
+        font-weight: 700;
+        font-size: 0.7rem;
+        margin: 0;
+      }
+    }
+
+    .title {
+
+      p {
+        margin: 0;
+        font-weight: 600;
+      }
+    }
+
+    .bias {
+
+      p {
+        color: $grey-darkest;
+        margin: 0.5rem 0 0;
+        font-size: 0.8rem;
+        font-weight: 600;
+
+        span {
+          margin-left: 0.5rem;
+
+          &.left-center {
+            color: $blue;
+          }
+
+          &.right-center {
+            color: $red;
+          }
+
+          &.center {
+            color: $purple;
+          }
+        }
+      }
+    }
   }
 }
 

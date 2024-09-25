@@ -4,7 +4,7 @@ export default function useData() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [sources, setSources] = useState([]);
-  const sections = ['Business', 'Entertainment', 'Health', 'Science', 'Sports', 'Technology', 'US', 'World'];
+  const sections = ['US', 'Business', 'Technology', 'World', 'Health', 'Science', 'Sports', 'Entertainment'];
 
   const fetchData = () => {
     const newsObj = {};
@@ -22,6 +22,7 @@ export default function useData() {
           newsObj[s] = filteredNews;
         })
         setData(newsObj);
+        setIsLoading(false);
       });
   }
 
@@ -32,11 +33,6 @@ export default function useData() {
   }
 
   useEffect(() => {
-    console.log(data)
-  }, [data])
-
-  useEffect(() => {
-    console.log(sources);
     if (sources.length) {
       fetchData();
     }
