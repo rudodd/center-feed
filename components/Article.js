@@ -13,13 +13,13 @@ export default function Article(props) {
 
   return (
     <Card className="article" elevation={0}>
-      <CardMedia
-        component="img"
-        sx={{ height: 175 }}
-        image={article.og}
-        alt={article.title}
-      />
       <Link href={article.link} target="_blank" rel="noreferrer">
+        <CardMedia
+          component="img"
+          sx={{ height: 175 }}
+          image={article.og}
+          alt={article.title}
+        />
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             <div className="source">
@@ -34,14 +34,14 @@ export default function Article(props) {
             <div className="title">
               <p>{article.title}</p>
             </div>
-            <div className="bias">
-              <p>Source bias rating: <Link className={article.bias} href={article.asmLink} target="_blank">
-                {article.bias === 'left-center' ? 'Leans left' : article.bias === 'right-center' ? 'Leans right' : 'Center'}
-              </Link></p>
-            </div>
           </CardContent>
         </Box>
       </Link>
+      <div className="bias">
+        <p>Source bias rating: <Link className={article.bias} href={article.asmLink} target="_blank">
+          {article.bias === 'left-center' ? 'Leans left' : article.bias === 'right-center' ? 'Leans right' : 'Center'}
+        </Link></p>
+      </div>
     </Card>
   )
 }

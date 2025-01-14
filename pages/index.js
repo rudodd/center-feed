@@ -16,10 +16,6 @@ export default function Home() {
   const prevSelected = useRef(selected);
 
   useEffect(() => {
-    console.log(data);
-  }, [data]);
-
-  useEffect(() => {
     if (selected.length !== prevSelected.current.length || selected[0] !== prevSelected.current[0]) {
       window.scrollTo({ top: 0, behavior: 'smooth' })
       prevSelected.current = selected;

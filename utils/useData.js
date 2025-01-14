@@ -10,10 +10,6 @@ export default function useData() {
   const [sources, setSources] = useState([]);
   const sections = ['US', 'Business', 'Technology', 'World', 'Health', 'Science', 'Sports', 'Entertainment'];
 
-  useEffect(() => {
-    console.log(sources);
-  }, [sources])
-
   const fetchData = () => {
     if (!isLoading) {
       setIsLoading(true);
