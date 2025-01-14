@@ -1,9 +1,9 @@
-import clientPromise from "../../lib/mongodb";
+import clientPromise from '../../lib/mongodb';
 
 export default async function handler(req, res) {
   const client = await clientPromise;
-  const db = client.db("news");
-  const sources = await db.collection("sources").find({}).toArray();
+  const db = client.db('news');
+  const sources = await db.collection('sources').find({}).toArray();
   const today = new Date().getTime();
   const expireDate = new Date(sources[0].expire).getTime();
   if (today > expireDate) {
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
           return response.json()
             .then((json) => {
               const updated = {sources: json, expire: expires}
-              db.collection("sources").updateOne(
+              db.collection('sources').updateOne(
                 {id: 1},
                 {
                   $set: {...updated},

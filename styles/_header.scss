@@ -51,9 +51,12 @@
   .navigation {
     display: flex;
     align-items: center;
-    justify-content: center;
     height: 3rem;
     overflow-x: scroll;
+
+    @media screen and (min-width: 500px) {
+      justify-content: center;
+    }
 
     &::-webkit-scrollbar {
       display: none;

@@ -10,6 +10,10 @@ export default function useData() {
   const [sources, setSources] = useState([]);
   const sections = ['US', 'Business', 'Technology', 'World', 'Health', 'Science', 'Sports', 'Entertainment'];
 
+  useEffect(() => {
+    console.log(sources);
+  }, [sources])
+
   const fetchData = () => {
     if (!isLoading) {
       setIsLoading(true);
@@ -23,8 +27,10 @@ export default function useData() {
             const bias = sources.find((source) => source.name.toLowerCase() === article.source.toLowerCase())?.bias;
             return (bias === 'left-center' || bias === 'right-center' || bias === 'center')
           }).map((article) => {
-            const bias = sources.find((source) => source.name.toLowerCase() === article.source.toLowerCase())?.bias;
-            return {...article, ['bias']: bias}
+            const sourceMatch = sources.find((source) => source.name.toLowerCase() === article.source.toLowerCase());
+            const bias = sourceMatch?.bias;
+            const asmLink = sourceMatch?.allsidesurl;
+            return {...article, 'bias': bias, 'asmLink': asmLink}
           })
           newsObj[s] = filteredNews;
         })

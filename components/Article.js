@@ -35,9 +35,9 @@ export default function Article(props) {
               <p>{article.title}</p>
             </div>
             <div className="bias">
-              <p>Source: <span className={article.bias}>
-                {article.bias === 'left-center' ? 'Leans left' : article.bias === 'right-center' ? 'Leans right' : 'Leans center'}
-              </span></p>
+              <p>Source bias rating: <Link className={article.bias} href={article.asmLink} target="_blank">
+                {article.bias === 'left-center' ? 'Leans left' : article.bias === 'right-center' ? 'Leans right' : 'Center'}
+              </Link></p>
             </div>
           </CardContent>
         </Box>
