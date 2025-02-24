@@ -10,19 +10,12 @@ export default function useData() {
   const [sources, setSources] = useState([]);
   const sections = ['US', 'Business', 'Technology', 'World', 'Health', 'Science', 'Sports', 'Entertainment'];
 
-  const options = useMemo(() => ({
-    method: 'GET',
-    headers: {
-      'x-cfapi-key': process.env.NEXT_PUBLIC_BE_API_KEY,
-    }
-  }));
-
   const fetchData = () => {
     if (!isLoading) {
       setIsLoading(true);
     }
     const newsObj = {};
-    fetch('/api/news', options)
+    fetch('/api/news')
       .then((res) => res.json())
       .then((res) => {
         sections.forEach((s) => {
@@ -45,7 +38,7 @@ export default function useData() {
   }
 
   const fetchSources = () => {
-    fetch('/api/all-sides-sources', options)
+    fetch('/api/all-sides-sources')
       .then((res) => res.json())
       .then((res) => setSources(res));
   }

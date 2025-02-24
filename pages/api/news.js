@@ -1,7 +1,7 @@
 export default function handler(req, res) {
   const requestApiKey = req.headers['x-cfapi-key'];
 
-  if (requestApiKey === process.env.BACKEND_API_KEY) {
+  if (req.headers.host === process.env.HOST || requestApiKey === process.env.BACKEND_API_KEY) {
     return fetch(`https://ok.surf/api/v1/news-feed`)
       .then((response) => {
         if (response.ok) {

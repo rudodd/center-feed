@@ -3,7 +3,7 @@ import clientPromise from '../../lib/mongodb';
 export default async function handler(req, res) {
   const requestApiKey = req.headers['x-cfapi-key'];
 
-  if (requestApiKey === process.env.BACKEND_API_KEY) {
+  if (req.headers.host === process.env.HOST || requestApiKey === process.env.BACKEND_API_KEY) {
     const client = await clientPromise;
     const db = client.db('news');
     const sources = await db.collection('sources').find({}).toArray();
