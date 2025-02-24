@@ -2,7 +2,6 @@ import clientPromise from '../../lib/mongodb';
 
 export default async function handler(req, res) {
   const requestApiKey = req.headers['x-cfapi-key'];
-  console.log("host: ", req.headers.host);
 
   if (req.headers.host === process.env.HOST || requestApiKey === process.env.BACKEND_API_KEY) {
     const client = await clientPromise;
