@@ -19,10 +19,14 @@ $grey-dark: #adb5bd;
 $grey-darker: #6c757d;
 $grey-darkest: #495057;
 
+:root {
+  --main-purple: #ae76d6;
+}
+
 // Primary colors
 $red: #ff595e;
 $blue: #1982c4;
-$purple: #7536a6;
+$purple: var(--main-purple);
 $orange: #f18701;
 
 /**
@@ -32,6 +36,8 @@ $orange: #f18701;
  body {
   font-family: 'Open Sans', sans-serif;
   line-height: 1.35;
+  --guwmi-radius: 6px;
+  --guwmi-inner-radius: 4px;
 }
 
 h1,
@@ -47,7 +53,7 @@ h6 {
 
 a,
 a:visited {
-  color: initial;
+  color: inherit;
   text-decoration: none;
 }
 
@@ -97,7 +103,7 @@ body {
   .section-title {
     gap: 1rem;
     padding: 0.5rem 0 0.5rem 0.75rem;
-    background: linear-gradient(to right, rgba(0,0,0, 0.033), rgba(0,0,0, 0.05) 100%);
+    background: var(--guwmi-primary-bg);
     border-radius: 4px;
 
     &:first-of-type {
@@ -108,6 +114,14 @@ body {
       margin: 0;
       font-weight: 400;
     }
+  }
+}
+
+// light theme colors
+@media (prefers-color-scheme: light) {
+
+  :root {
+    --main-purple: #7536a6;
   }
 }
 

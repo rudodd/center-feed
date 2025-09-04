@@ -3,13 +3,16 @@
  **/
 
  .article {
-  display: flex;
-  flex-direction: column;
+
+  .guwmi-skeleton-block {
+    width: 100%;
+  }
 
   .source {
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    margin-bottom: 0.65rem;
 
     p {
       font-weight: 700;
@@ -29,12 +32,11 @@
   .bias {
 
     p {
-      color: $grey-darkest;
-      margin: 0 1rem 1rem;
+      margin: 0;
       font-size: 0.8rem;
       font-weight: 600;
 
-      a:not(.MuiSkeleton-root) {
+      a {
         margin-left: 0.5rem;
 
         &.left-center {

@@ -1,7 +1,6 @@
-// Import styles
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import styles
 import '../styles/app.scss';
+import '@guwmi/ui/dist/styles.css';
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
