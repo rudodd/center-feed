@@ -2,13 +2,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 // import custom functionality
-import useData from '../utils/useData';
+import { useData } from '../utils/useData';
 
 // import components
 import Header from '../components/Header';
 import Article from '../components/Article';
-import { SkeletonHeading } from '@guwmi/ui';
 import ArticleSkeleton from '../components/ArticleSkeleton';
+import { SkeletonHeading } from '@guwmi/ui';
 
 export default function Home() {
   const { data, isLoading, sections, fetchData } = useData();

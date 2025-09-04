@@ -1,5 +1,10 @@
 // import components
-import { Card, CardSection, SkeletonBlock, SkeletonParagraph } from '@guwmi/ui';
+import {
+  Card,
+  CardSection,
+  SkeletonBlock,
+  SkeletonParagraph
+} from '@guwmi/ui';
 
 export default function ArticleSkeleton() {
 

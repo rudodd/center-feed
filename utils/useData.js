@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 // import custom functionality
 import { empty } from './helpers';
 
-export default function useData() {
+export function useData() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [sources, setSources] = useState([]);
