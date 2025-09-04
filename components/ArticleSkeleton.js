@@ -5,7 +5,7 @@ export default function ArticleSkeleton() {
 
   return (
     <Card className="article">
-      <SkeletonBlock height={185} width={380} />
+      <SkeletonBlock height={185} />
       <CardSection>
         <div className="source">
           <SkeletonBlock height={20} width={20} />

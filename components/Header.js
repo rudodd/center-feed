@@ -1,6 +1,9 @@
 // Import library functionality
 import React, { useState, useEffect } from 'react';
 
+// import custom functionality
+import { useDarkMode } from '../utils/useDarkMode.ts';
+
 // Import components
 import Head from 'next/head';
 import Link from 'next/link';
@@ -9,6 +12,7 @@ export default function Header(props) {
 
   const { loading, refresh, sections, selected, setSelected } = props;
   const [showHeader, setShowHeader] = useState(false);
+  const { prefersDarkMode } = useDarkMode();
 
   // Function to toggle the drop shadow for the header if scrolled below the absolute top
   const toggleDropShadow = (e)=> {
@@ -48,7 +52,7 @@ export default function Header(props) {
       <header className={showHeader ? 'app-header show' : 'app-header'}>
       <div className="logo">
         <Link href="/">
-          <img src="/img/logo.svg" alt="The Center Feed Logo" />
+          <img src={prefersDarkMode ? '/img/logo-dark.svg' : '/img/logo.svg'} alt="The Center Feed Logo" />
           <h1 className="sr-only">The Center Feed</h1>
         </Link>
       </div>

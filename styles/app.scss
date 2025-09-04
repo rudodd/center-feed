@@ -19,10 +19,14 @@ $grey-dark: #adb5bd;
 $grey-darker: #6c757d;
 $grey-darkest: #495057;
 
+:root {
+  --main-purple: #ae76d6;
+}
+
 // Primary colors
 $red: #ff595e;
 $blue: #1982c4;
-$purple: #7536a6;
+$purple: var(--main-purple);
 $orange: #f18701;
 
 /**
@@ -110,6 +114,14 @@ body {
       margin: 0;
       font-weight: 400;
     }
+  }
+}
+
+// light theme colors
+@media (prefers-color-scheme: light) {
+
+  :root {
+    --main-purple: #7536a6;
   }
 }
 
