@@ -99,7 +99,7 @@ body {
   .section-title {
     gap: 1rem;
     padding: 0.5rem 0 0.5rem 0.75rem;
-    background: linear-gradient(to right, rgba(0,0,0, 0.033), rgba(0,0,0, 0.05) 100%);
+    background: var(--guwmi-primary-bg);
     border-radius: 4px;
 
     &:first-of-type {

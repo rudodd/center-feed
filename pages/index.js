@@ -7,8 +7,8 @@ import useData from '../utils/useData';
 // import components
 import Header from '../components/Header';
 import Article from '../components/Article';
+import { SkeletonHeading } from '@guwmi/ui';
 import ArticleSkeleton from '../components/ArticleSkeleton';
-// import Skeleton from '@mui/material/Skeleton';
 
 export default function Home() {
   const { data, isLoading, sections, fetchData } = useData();
@@ -29,7 +29,7 @@ export default function Home() {
         {isLoading ? (
           <>
             <div className="section-title">
-              {/* <h2><Skeleton variant="rounded" width={100} /></h2> */}
+              <SkeletonHeading heading='h2' />
             </div>
             {[0,0,0,0,0].map((i, k) => (
               <ArticleSkeleton key={k} />
